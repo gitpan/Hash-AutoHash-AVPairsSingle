@@ -1,0 +1,10 @@
+Revision history for Hash-AutoHash-AVPairsSingle
+
+1.10    2009-10-30
+	This should be stable release assuming CPAN testers find no problems
+        Fixed Build prereqs
+        Refactored perl 5.10 dependent test code
+
+1.00    2009-10-30
+        First version, released on an unsuspecting world.
+
