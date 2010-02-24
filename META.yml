@@ -1,6 +1,6 @@
 ---
 name: Hash-AutoHash-AVPairsSingle
-version: 1.10
+version: 1.11
 author:
   - 'Nat Goodman <natg@shore.net>'
 abstract: Object-oriented access to hash with simple (non-reference) elements
@@ -20,12 +20,12 @@ configure_requires:
 provides:
   Hash::AutoHash::AVPairsSingle:
     file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 1.10
+    version: 1.11
   Hash::AutoHash::AVPairsSingle::helper:
     file: lib/Hash/AutoHash/AVPairsSingle.pm
   Hash::AutoHash::AVPairsSingle::tie:
     file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 1.10
+    version: 1.11
 generated_by: Module::Build version 0.34
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html

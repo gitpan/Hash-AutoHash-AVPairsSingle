@@ -1,5 +1,8 @@
 Revision history for Hash-AutoHash-AVPairsSingle
 
+1.11    2010-02-24
+	Minor documentation cleanup and reformatting
+
 1.10    2009-10-30
 	This should be stable release assuming CPAN testers find no problems
         Fixed Build prereqs

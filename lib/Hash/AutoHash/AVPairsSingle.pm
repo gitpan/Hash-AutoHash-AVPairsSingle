@@ -1,5 +1,5 @@
 package Hash::AutoHash::AVPairsSingle;
-our $VERSION='1.10';
+our $VERSION='1.11';
 #################################################################################
 #
 # Author:  Nat Goodman
@@ -42,7 +42,7 @@ sub _new {
 # Tied hash which implements Hash::AutoHash::MultiValued
 #################################################################################
 package Hash::AutoHash::AVPairsSingle::tie;
-our $VERSION='1.10';
+our $VERSION='1.11';
 use strict;
 use Carp;
 use Tie::Hash;
@@ -77,7 +77,7 @@ Hash::AutoHash::AVPairsSingle - Object-oriented access to hash with simple (non-
 
 =head1 VERSION
 
-Version 1.10
+Version 1.11
 
 =head1 SYNOPSIS
 
@@ -143,9 +143,7 @@ individual objects), functions that must be imported into the caller's
 namespace, and methods invoked on the tied object implementing the
 hash.
 
-=head2 Functions and methods
-
-The constructor is 'new'.
+=head2 new
 
  Title   : new 
  Usage   : $avp=new Hash::AutoHash::AVPairsSingle name=>'Joe',hobby=>'chess'
@@ -158,6 +156,8 @@ The constructor is 'new'.
  Args    : Optional list of key=>value pairs which are used to set elements of
            the object. Args can also be passed as ARRAY or HASH
 
+=head2 Functions inherited from Hash::AutoHash
+
 The following functions are inherited from L<Hash::AutoHash> and
 operate exactly as there. You must import them into your namespace
 before use.
@@ -167,6 +167,8 @@ before use.
        autohash_clear autohash_delete autohash_each autohash_exists 
        autohash_keys autohash_values 
        autohash_count autohash_empty autohash_notempty)
+
+=head3 autohash_alias
 
 Aliasing a Hash::AutoHash object to a regular hash avoids the need to
 dereference the variable when using hash notation.  As a convenience,
@@ -178,6 +180,8 @@ on whether the given object exists.
  Function: Link $avp to %hash such that they will have exactly the same value.
  Args    : Hash::AutoHash::AVPairsSingle object and hash 
  Returns : Hash::AutoHash::AVPairsSingle object
+
+=head3 autohash_tied
 
 You can access the object implementing the tied hash using Perl's
 built-in tied function or the autohash_tied function inherited from
@@ -210,13 +214,15 @@ invoking methods on the tied object.
            Form 4. hash to which Hash::AutoHash::AVPairsSingle object is aliased, 
              method name, optional list of parameters for method
 
-The next two functions provide wholesale manipulation of arguments.
+=head3 autohash_get
 
  Title   : autohash_get
  Usage   : ($name,$hobby)=autohash_get($avp,qw(name hobby))
  Function: Get values for multiple keys.
  Args    : Hash::AutoHash::AVPairsSingle object and list of keys
  Returns : list of argument values
+
+=head3 autohash_set
 
  Title   : autohash_set
  Usage   : autohash_set($avp,name=>'Joe Plumber',first_name=>'Joe')
@@ -228,9 +234,13 @@ The next two functions provide wholesale manipulation of arguments.
            values
  Returns : Hash::AutoHash::AVPairsSingle object
 
+=head3 Functions for hash-like operations
+
 The remaining functions provide hash-like operations on
 Hash::AutoHash::AVPairsSingle objects. These are useful if you want to
 avoid hash notation all together.
+
+=head4 autohash_clear
 
  Title   : autohash_clear
  Usage   : autohash_clear($avp)
@@ -238,17 +248,23 @@ avoid hash notation all together.
  Args    : Hash::AutoHash::AVPairsSingle object
  Returns : nothing
 
+=head4 autohash_delete
+
  Title   : autohash_delete
  Usage   : autohash_delete($avp,@keys)
  Function: Delete keys and their values from $avp.
  Args    : Hash::AutoHash::AVPairsSingle object, list of keys
  Returns : nothing
 
+=head4 autohash_exists
+
  Title   : autohash_exists
  Usage   : if (autohash_exists($avp,$key)) { ... }
  Function: Test whether key is present in $avp.
  Args    : Hash::AutoHash::AVPairsSingle object, key
  Returns : boolean
+
+=head4 autohash_each
 
  Title   : autohash_each
  Usage   : while (my($key,$value)=autohash_each($avp)) { ... }
@@ -259,11 +275,15 @@ avoid hash notation all together.
  Returns : list context: next key=>value pair in $avp or empty list at end
            scalar context: next key in $avp or undef at end
 
+=head4 autohash_keys
+
  Title   : autohash_keys
  Usage   : @keys=autohash_keys($avp)
  Function: Get all keys that are present in $avp
  Args    : Hash::AutoHash::AVPairsSingle object
  Returns : list of keys
+
+=head4 autohash_values
 
  Title   : autohash_values
  Usage   : @values=autohash_values($avp)
@@ -271,11 +291,15 @@ avoid hash notation all together.
  Args    : Hash::AutoHash::AVPairsSingle object
  Returns : list of values
 
+=head4 autohash_count
+
  Title   : autohash_count
  Usage   : $count=autohash_count($avp)
  Function: Get the number keys that are present in $avp
  Args    : Hash::AutoHash::AVPairsSingle object
  Returns : number
+
+=head4 autohash_empty
 
  Title   : autohash_empty
  Usage   : if (autohash_empty($avp)) { ... }
@@ -283,10 +307,11 @@ avoid hash notation all together.
  Args    : Hash::AutoHash::AVPairsSingle object
  Returns : boolean
 
+=head4 autohash_notempty
+
  Title   : autohash_notempty
  Usage   : if (autohash_notempty($avp)) { ... }
- Function: Test whether $avp
- is not empty. Complement of autohash_empty
+ Function: Test whether $avp is not empty. Complement of autohash_empty
  Args    : Hash::AutoHash::AVPairsSingle object
  Returns : boolean
 
