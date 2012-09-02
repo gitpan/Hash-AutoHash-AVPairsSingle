@@ -2,6 +2,7 @@ package autohashUtil;
 use lib qw(t);
 use strict;
 use Carp;
+use List::MoreUtils qw(uniq);
 #use Test::More qw/no_plan/;
 use Test::More;
 use Test::Deep;
@@ -14,7 +15,7 @@ our @EXPORT=qw(as_bool ordinal report _report
 	       @KEYS @UNDEFS @VALUES_SV @VALUES_MV $VERBOSE
 	       is_autohash is_hash is_object is_self is_tie 
 	       is_autohash_hash is_autohash_object is_autohash_self is_autohash_tie
-	       test_subclass_special_keys
+	       test_special_keys 
 	       test_class_methods @COMMON_SPECIAL_KEYS
 	       $autohash %hash %tie $object);
 
@@ -337,33 +338,70 @@ sub each_obj {
 #   is_tie($label,@values);
 # }
 
-# used for Child, Grandchild tests.  not for main special_keys test
-sub test_subclass_special_keys (*) {
-  my($class)=@_;
+# NG 12-09-02: no longer possible to override methods inheritted from UNIVERSAL
+# used by xxx.020.special_keys.t for many (probably all) subclasses 
+our @COMMON_SPECIAL_KEYS=qw(import new AUTOLOAD DESTROY);
+our @FORMER_SPECIAL_KEYS=qw(can isa DOES VERSION);
+
+sub test_special_keys {
+  my($autohash,$repeat,$fixer,$case)=@_;
+  my $class=ref $autohash;
+  defined($repeat) or $repeat=1;
+  defined($fixer) or $fixer=sub {$_[0]};
+  my $label=length($case)? "$class $case special keys": "$class special keys";
   my @keys;
   {
     no strict 'refs';
-    @keys=(qw(import new can isa DOES VERSION AUTOLOAD DESTROY),
-	   @Hash::AutoHash::EXPORT_OK,@{$class.'::EXPORT_OK'});  
+    @keys=uniq(@COMMON_SPECIAL_KEYS,
+	       # qw(import new can isa DOES VERSION AUTOLOAD DESTROY),
+	       @Hash::AutoHash::EXPORT_OK,@{$class.'::EXPORT_OK'});  
   }
-  $autohash=new $class;
   my(@ok,@fail);
   for my $key (@keys) {
     my $value="value_$key";
-    $autohash->$key($value);	# set value
+    for(my $i=0; $i<$repeat; $i++) {$autohash->$key($value);} # set value
     my $actual=$autohash->$key;	# get value
-    my $correct=$value;
-#    eq_deeply,($actual,$correct)? push(@ok,$key): push(@fail,$key);
-    $actual eq $correct? push(@ok,$key): push(@fail,$key);
+    my $correct=&$fixer($value);
+    eq_deeply($actual,$correct)? push(@ok,$key): push(@fail,$key);
+    # $actual eq $correct? push(@ok,$key): push(@fail,$key);
   }
   # like '_report'
-  my $label="$class special keys";
+#  my $label="$class special keys";
 #   pass("$label. keys=@keys"),return unless @fail;
   pass($label),return unless @fail;
   fail($label);
   diag(scalar(@ok)." keys have correct values: @ok");
   diag(scalar(@fail)." keys have wrong values: @fail");
 }
+
+# # used for Child, Grandchild tests.  not for main special_keys test
+# sub test_subclass_special_keys (*) {
+#   my($class)=@_;
+#   my @keys;
+#   {
+#     no strict 'refs';
+#     @keys=uniq(@COMMON_SPECIAL_KEYS,
+# 	       # qw(import new can isa DOES VERSION AUTOLOAD DESTROY),
+# 	       @Hash::AutoHash::EXPORT_OK,@{$class.'::EXPORT_OK'});  
+#   }
+#   $autohash=new $class;
+#   my(@ok,@fail);
+#   for my $key (@keys) {
+#     my $value="value_$key";
+#     $autohash->$key($value);	# set value
+#     my $actual=$autohash->$key;	# get value
+#     my $correct=$value;
+#     # eq_deeply($actual,$correct)? push(@ok,$key): push(@fail,$key);
+#     $actual eq $correct? push(@ok,$key): push(@fail,$key);
+#   }
+#   # like '_report'
+#   my $label="$class special keys";
+# #   pass("$label. keys=@keys"),return unless @fail;
+#   pass($label),return unless @fail;
+#   fail($label);
+#   diag(scalar(@ok)." keys have correct values: @ok");
+#   diag(scalar(@fail)." keys have wrong values: @fail");
+# }
 # used by xxx.020.class_methods.t for many (probably all) subclasses 
 sub test_class_methods {
   my $class=shift;
@@ -420,7 +458,5 @@ sub test_class_methods {
   import $class (@imports);
   pass('import all functions');
 }
-# used by xxx.020.special_keys.t for many (probably all) subclasses 
-our @COMMON_SPECIAL_KEYS=qw(import new can isa DOES VERSION AUTOLOAD DESTROY);
 
 1;

@@ -1,32 +1,34 @@
 ---
-name: Hash-AutoHash-AVPairsSingle
-version: 1.11
+abstract: 'Object-oriented access to hash with simple (non-reference) elements'
 author:
   - 'Nat Goodman <natg@shore.net>'
-abstract: Object-oriented access to hash with simple (non-reference) elements
-license: perl
-resources:
-  license: http://dev.perl.org/licenses/
 build_requires:
   Exporter: 0
   Test::Deep: 0
   Test::More: 0.88
+configure_requires:
+  Module::Build: 0.4
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4, CPAN::Meta::Converter version 2.112150'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Hash-AutoHash-AVPairsSingle
+provides:
+  Hash::AutoHash::AVPairsSingle:
+    file: lib/Hash/AutoHash/AVPairsSingle.pm
+    version: 1.12
+  Hash::AutoHash::AVPairsSingle::helper:
+    file: lib/Hash/AutoHash/AVPairsSingle.pm
+    version: 0
+  Hash::AutoHash::AVPairsSingle::tie:
+    file: lib/Hash/AutoHash/AVPairsSingle.pm
+    version: 0
 requires:
   Carp: 0
   Hash::AutoHash: 1.1
   Tie::Hash: 1
-configure_requires:
-  Module::Build: 0.34
-provides:
-  Hash::AutoHash::AVPairsSingle:
-    file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 1.11
-  Hash::AutoHash::AVPairsSingle::helper:
-    file: lib/Hash/AutoHash/AVPairsSingle.pm
-  Hash::AutoHash::AVPairsSingle::tie:
-    file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 1.11
-generated_by: Module::Build version 0.34
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+resources:
+  license: http://dev.perl.org/licenses/
+version: 1.12

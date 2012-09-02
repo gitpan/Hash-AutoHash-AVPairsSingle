@@ -1,0 +1,58 @@
+{
+   "abstract" : "Object-oriented access to hash with simple (non-reference) elements",
+   "author" : [
+      "Nat Goodman <natg@shore.net>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Hash-AutoHash-AVPairsSingle",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Exporter" : 0,
+            "Test::Deep" : 0,
+            "Test::More" : "0.88"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.4"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : 0,
+            "Hash::AutoHash" : "1.1",
+            "Tie::Hash" : "1"
+         }
+      }
+   },
+   "provides" : {
+      "Hash::AutoHash::AVPairsSingle" : {
+         "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
+         "version" : "1.12"
+      },
+      "Hash::AutoHash::AVPairsSingle::helper" : {
+         "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
+         "version" : 0
+      },
+      "Hash::AutoHash::AVPairsSingle::tie" : {
+         "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "1.12"
+}

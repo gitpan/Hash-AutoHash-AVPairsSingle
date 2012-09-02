@@ -12,21 +12,22 @@ my $class = Module::Build->subclass
      },
   );
 
-my $builder = $class->new(
-    module_name         => 'Hash::AutoHash::AVPairsSingle',
-    license             => 'perl',
-    dist_author         => q{Nat Goodman <natg@shore.net>},
-    dist_version_from   => 'lib/Hash/AutoHash/AVPairsSingle.pm',
-    build_requires =>   {'Test::More' => 0.88,
-		         'Test::Deep' => 0,
-		          'Exporter' => 0,
-		        },
-    requires =>         {'Carp' => 0,
-		         'Tie::Hash' => 1.00,
-		         'Hash::AutoHash' => 1.10,
-		        },
-    add_to_cleanup      => [ 'Hash-AutoHash-AVPairsSingle-*' ],
-    create_makefile_pl => 'passthrough',
-);
+my $builder = $class->new
+  (module_name         => 'Hash::AutoHash::AVPairsSingle',
+   license             => 'perl',
+   dist_author         => q{Nat Goodman <natg@shore.net>},
+   configure_requires=>{'Module::Build' => 0.4,
+		       },
+   build_requires =>   {'Test::More' => 0.88,
+			'Test::Deep' => 0,
+			'Exporter' => 0,
+		       },
+   requires =>         {'Carp' => 0,
+			'Tie::Hash' => 1.00,
+			'Hash::AutoHash' => 1.10,
+		       },
+   add_to_cleanup      => [ 'Hash-AutoHash-AVPairsSingle-*' ],
+   create_makefile_pl => 'small',
+  );
 
 $builder->create_build_script();
