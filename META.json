@@ -37,15 +37,15 @@
    "provides" : {
       "Hash::AutoHash::AVPairsSingle" : {
          "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
-         "version" : "1.12"
+         "version" : "1.13"
       },
       "Hash::AutoHash::AVPairsSingle::helper" : {
          "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
-         "version" : 0
+         "version" : "1.13"
       },
       "Hash::AutoHash::AVPairsSingle::tie" : {
          "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
-         "version" : 0
+         "version" : "1.13"
       }
    },
    "release_status" : "stable",
@@ -54,5 +54,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "1.12"
+   "version" : "1.13"
 }

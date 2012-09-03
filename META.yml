@@ -18,17 +18,17 @@ name: Hash-AutoHash-AVPairsSingle
 provides:
   Hash::AutoHash::AVPairsSingle:
     file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 1.12
+    version: 1.13
   Hash::AutoHash::AVPairsSingle::helper:
     file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 0
+    version: 1.13
   Hash::AutoHash::AVPairsSingle::tie:
     file: lib/Hash/AutoHash/AVPairsSingle.pm
-    version: 0
+    version: 1.13
 requires:
   Carp: 0
   Hash::AutoHash: 1.1
   Tie::Hash: 1
 resources:
   license: http://dev.perl.org/licenses/
-version: 1.12
+version: 1.13
