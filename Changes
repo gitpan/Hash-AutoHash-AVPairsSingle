@@ -1,5 +1,10 @@
 Revision history for Hash-AutoHash-AVPairsSingle
 
+1.14	2012-09-18
+	Fixed Hash::AutoHash prerequisite in Build.PL. Needs 1.15
+	Reverted version numbers in helper and tie package. PAUSE upload
+	  wasn't failing - it was just a warning
+
 1.13	2012-09-02
 	Fixed problem with version numbers in helper and tie packages causing
 	  PAUSE upload to fail
