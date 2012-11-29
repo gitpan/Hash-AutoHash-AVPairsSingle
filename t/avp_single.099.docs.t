@@ -31,17 +31,17 @@ my($name,$hobby)=@$avp{qw(name hobby)};     # get 2 elements in one statement
 cmp_deeply([$name,$hobby],['Joe','chess'],'access as hash: multiple values ');
 
 my @keys=keys %$avp;		# ('name','hobby')
-cmp_bag(\@keys,[qw(name hobby)],'keys as hash');
+cmp_set(\@keys,[qw(name hobby)],'keys as hash');
 my @values=values %$avp;	# ('Joe','chess')
-cmp_bag(\@values,['Joe','chess'],'values as hash');
+cmp_set(\@values,['Joe','chess'],'values as hash');
 my(@keys,@values);		# NOT in docs. needed for testing
 while (my($key,$value)=each %$avp) {
 #  print "$key => @$value\n";	# prints each element as usual
   push(@keys,$key);		# NOT in docs. needed for testing
   push(@values,$value);		# NOT in docs. needed for testing
 }
-cmp_bag(\@keys,[qw(name hobby)],'each as hash (keys)');
-cmp_bag(\@values,['Joe','chess'],'each as hash (values)');
+cmp_set(\@keys,[qw(name hobby)],'each as hash (keys)');
+cmp_set(\@values,['Joe','chess'],'each as hash (values)');
 
 delete $avp->{hobby};	# no more hobby
 cmp_autohash('delete',$avp,{name=>'Joe'});
@@ -120,17 +120,17 @@ if (autohash_exists($avp,$key)) {pass('autohash_exists')} else {fail('autohash_e
 my(@keys,@values);
 my $avp=new Hash::AutoHash::AVPairsSingle name=>'Joe',hobby=>'chess';
 while (my($key,$value)=autohash_each($avp)) { push(@keys,$key); push(@values,$value); }
-cmp_bag(\@keys,[qw(name hobby)],'autohash_each form 1 (keys)');
-cmp_bag(\@values,['Joe','chess'],'autohash_each form 1 (values)');
+cmp_set(\@keys,[qw(name hobby)],'autohash_each form 1 (keys)');
+cmp_set(\@values,['Joe','chess'],'autohash_each form 1 (values)');
 my(@keys,@values);
 while (my $key=autohash_each($avp)) { push(@keys,$key); }
-cmp_bag(\@keys,[qw(name hobby)],'autohash_each form 2 (keys)');
+cmp_set(\@keys,[qw(name hobby)],'autohash_each form 2 (keys)');
 
 my(@keys,@values);
 @keys=autohash_keys($avp);
-cmp_bag(\@keys,[qw(name hobby)],'autohash_keys');
+cmp_set(\@keys,[qw(name hobby)],'autohash_keys');
 @values=autohash_values($avp);
-cmp_bag(\@values,['Joe','chess'],'autohash_values');
+cmp_set(\@values,['Joe','chess'],'autohash_values');
 
 my $count;
 $count=autohash_count($avp);
