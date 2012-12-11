@@ -18,8 +18,7 @@
          "requires" : {
             "Exporter" : 0,
             "Test::Deep" : 0,
-            "Test::More" : "0.88",
-            "perl" : "v5.17.6"
+            "Test::More" : "0.88"
          }
       },
       "configure" : {
@@ -30,7 +29,7 @@
       "runtime" : {
          "requires" : {
             "Carp" : 0,
-            "Hash::AutoHash" : "1.15",
+            "Hash::AutoHash" : "1.16",
             "Tie::Hash" : "1"
          }
       }
@@ -38,7 +37,7 @@
    "provides" : {
       "Hash::AutoHash::AVPairsSingle" : {
          "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
-         "version" : "1.16_01"
+         "version" : "1.16"
       },
       "Hash::AutoHash::AVPairsSingle::helper" : {
          "file" : "lib/Hash/AutoHash/AVPairsSingle.pm",
@@ -49,11 +48,11 @@
          "version" : 0
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "license" : [
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "1.16_01"
+   "version" : "1.16"
 }
