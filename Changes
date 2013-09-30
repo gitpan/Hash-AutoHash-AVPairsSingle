@@ -1,6 +1,11 @@
 Revision history for Hash-AutoHash-AVPairsSingle
 
-1.16	2012-11-DD
+1.17_01	2013-09-29
+	No functional changes
+	Updated depdendencies
+        Fixed boilerplate & pod tests
+
+1.16	2012-12-11
 	Fixed tests that were failing because of hash key randomization 
 	introduced in 5.16
 
