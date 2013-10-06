@@ -1,6 +1,6 @@
 Revision history for Hash-AutoHash-AVPairsSingle
 
-1.17_01	2013-09-29
+1.17	2013-10-05
 	No functional changes
 	Updated depdendencies
         Fixed boilerplate & pod tests
